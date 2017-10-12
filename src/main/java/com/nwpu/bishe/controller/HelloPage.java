@@ -1,7 +1,9 @@
 package com.nwpu.bishe.controller;
 
+import com.nwpu.bishe.core.jpa.entity.User;
+import com.nwpu.bishe.core.jpa.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -10,11 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class HelloPage {
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/helloPage")
     @ResponseBody
-    public int helloPage(){
+    public String helloPage(){
+        User byId = userRepository.findById(10l);
         int a = 1;
-        return a;
+        return byId.getUserName();
     }
 }

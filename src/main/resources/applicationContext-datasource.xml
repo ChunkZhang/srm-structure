@@ -19,7 +19,7 @@
 
 	<bean id="piaoDataSource" parent="abstractDataSource">
 		<property name="name" value="piao" />
-		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="${piao.db.url}" />
 		<property name="username" value="${piao.db.username}" />
 		<property name="password" value="${piao.db.password}" />
@@ -30,32 +30,15 @@
 		<property name="maxWait" value="${db.timeout}" />
 	</bean>
 
-	<bean id="readPiaoDataSource" parent="abstractDataSource">
-		<property name="name" value="readPiao" />
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="${read.piao.db.url}" />
-		<property name="username" value="${read.piao.db.username}" />
-		<property name="password" value="${read.piao.db.password}" />
-		<property name="maxActive" value="${read.db.maxPoolSize}" />
-		<property name="maxIdle" value="${read.db.maxPoolSize}" />
-		<property name="initialSize" value="${read.db.initialPoolSize}" />
-		<property name="minIdle" value="${read.db.initialPoolSize}" />
-		<property name="maxWait" value="${db.timeout}" />
-	</bean>
 
 	<bean id="piaoJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="piaoDataSource" />
 	</bean>
-	<bean id="readPiaoJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="readPiaoDataSource" />
-	</bean>
+
 
 	<!-- geely.wu2016年03月21日,增加namedParameterJdbcTemplate,供springjdbc in使用,消除sql注入的隐患 -->
 	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg type="org.springframework.jdbc.core.JdbcOperations" ref="piaoJdbcTemplate" />
-	</bean>
-	<bean id="readNamedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-		<constructor-arg type="org.springframework.jdbc.core.JdbcOperations" ref="readPiaoJdbcTemplate" />
 	</bean>
 
 	<bean id="jdbcTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

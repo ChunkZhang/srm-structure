@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+
+    <description>Spring MVC视图解析配置</description>
+    <context:annotation-config />
+    <!-- 启动对@AspectJ注解的支持  -->
+    <aop:aspectj-autoproxy />
+    <!--<context:property-placeholder ignore-unresolvable="true" ignore-resource-not-found="true" location="classpath:*.properties"/>-->
+    <context:component-scan base-package="com.nwpu.bishe.controller" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    </bean>
+
+
+
+    <!-- =======================================
+         responseBody json 支持
+    ======================================= -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView"/>
+        <!-- 设置前缀，即视图所在的路径 -->
+        <property name="prefix" value="/WEB-INF/views/" />
+        <!-- 设置后缀，即视图的扩展名 -->
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+
+
+
+
+    <!-- ============================================================== -->
+    <!-- 文件上传表单的视图解析器 -->
+    <!-- ============================================================== -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 解析request的编码 -->
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+        <!-- 设置上传文件最大20MB -->
+        <property name="maxUploadSize">
+            <value>20971520</value>
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
+
+
+</beans>

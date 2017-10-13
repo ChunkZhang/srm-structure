@@ -4,6 +4,49 @@
   <groupId>nwpu</groupId>
   <artifactId>srm-structure</artifactId>
   <packaging>war</packaging>
+    <properties>
+        <java.version>1.8</java.version>
+        <cglib.version>2.2.2</cglib.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <junit.version>4.10</junit.version>
+        <netty4.version>4.0.24.Final</netty4.version>
+        <org.springframework.version>4.3.3.RELEASE</org.springframework.version>
+        <async.http.client.version>1.9.31</async.http.client.version>
+        <qunar.common.version>8.3.1</qunar.common.version>
+        <common.zookeeper.version>1.1.4</common.zookeeper.version>
+        <org.apache.commons.email.version>1.2</org.apache.commons.email.version>
+        <qmq.version>2.1.4</qmq.version>
+        <qunar.redis.version>1.7.3</qunar.redis.version>
+        <ucenter.version>3.1.2</ucenter.version>
+        <qunar.pay.version>1.0.3</qunar.pay.version>
+        <oro.version>2.0.8</oro.version>
+        <qsight.version>2.1.9</qsight.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.directory>target</project.build.directory>
+        <fe.piao_marketing.app_ver_path>${project.basedir}/src/main/webapp/WEB-INF/template/marketingver</fe.piao_marketing.app_ver_path>
+        <fe.piao_base.app_ver_path>${project.basedir}/src/main/webapp/WEB-INF/template/basever</fe.piao_base.app_ver_path>
+        <fe.piao.app_ver_path>${project.basedir}/src/main/webapp/WEB-INF/template/piaover</fe.piao.app_ver_path>
+        <!--qzz.groupId为后端所引用前端的groupId-->
+        <qzz.groupId>com.qunar.qzz</qzz.groupId>
+        <!--qzz.artifactId为后端所引用前端的artifactId-->
+        <qzz.artifactId>piao_marketing</qzz.artifactId>
+        <!--qzz.version为后端所引用前端的version,通常由bds输入参数qzz_tag_name决定-->
+        <fe.piao_marketing.version>r-170728-185252-rui.deng</fe.piao_marketing.version>
+        <fe.piao_base.version>r-160418-153635-rui.deng</fe.piao_base.version>
+        <fe.piao.version>r-170504-112828-chengxue.wu</fe.piao.version>
+        <ticket.common.version>0.0.20</ticket.common.version>
+        <tomcat.jdbc.version>8.5.2</tomcat.jdbc.version>
+        <com.qunar.ucenter.ucenter-api-stimulate.version>2.10.12</com.qunar.ucenter.ucenter-api-stimulate.version>
+        <springfox.version>2.4.0</springfox.version>
+        <swagger.annotations.verion>1.5.9</swagger.annotations.verion>
+        <org.apache.poi.version>3.9</org.apache.poi.version>
+        <org.apache.commons-fileupload.version>1.2.2</org.apache.commons-fileupload.version>
+        <com.qunar.mobile.public_im_sdk.version>1.0.8</com.qunar.mobile.public_im_sdk.version>
+        <piao.pms.client>1.3.09</piao.pms.client>
+        <qunar.tc.url-shortener-api.version>1.0.3</qunar.tc.url-shortener-api.version>
+        <elasticsearch.version>2.3.1</elasticsearch.version>
+        <jackson.version>2.8.5</jackson.version>
+    </properties>
   <version>1.0-SNAPSHOT</version>
   <name>srm-structure Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -148,5 +191,98 @@
   </dependencies>
   <build>
     <finalName>srm-structure</finalName>
-  </build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-5</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/src/generated/java</outputDirectory>
+                            <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.basedir}/src/generated/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources.${deploy.type}</directory>
+                <excludes>
+                    <exclude>*.jsp</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 </project>

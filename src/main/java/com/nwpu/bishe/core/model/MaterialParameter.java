@@ -22,6 +22,9 @@ public class MaterialParameter {
     //室温转换因子
     private List<Double> trsTable;
 
+    public MaterialParameter() {
+    }
+
     public MaterialParameter(double poissonRatio, double expansion, double density, double modulus, Map<String, List<Double>> pronyTable, List<Double> trsTable) {
         this.poissonRatio = poissonRatio;
         this.expansion = expansion;

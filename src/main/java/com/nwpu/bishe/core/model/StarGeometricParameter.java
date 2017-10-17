@@ -26,6 +26,10 @@ public class StarGeometricParameter {
 
     private double grainLength;
 
+    public StarGeometricParameter() {
+
+    }
+
     public StarGeometricParameter(int starNum, double starCoefficient, double outerRadius, double featureLength, double arcRadius, double startAngle, double starArcRadius, double ellipseYAxis, double grainLength) {
         this.starNum = starNum;
         this.starCoefficient = starCoefficient;

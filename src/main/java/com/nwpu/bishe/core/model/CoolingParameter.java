@@ -11,6 +11,9 @@ public class CoolingParameter {
 
     private double timeSpan;
 
+    public CoolingParameter() {
+    }
+
     public CoolingParameter(double originTemperature, double finalTemperature, double timeSpan) {
         this.originTemperature = originTemperature;
         this.finalTemperature = finalTemperature;

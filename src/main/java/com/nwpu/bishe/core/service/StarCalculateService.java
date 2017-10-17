@@ -1,5 +1,6 @@
 package com.nwpu.bishe.core.service;
 
+import com.nwpu.bishe.common.utils.PathUtil;
 import com.nwpu.bishe.core.model.CoolingParameter;
 import com.nwpu.bishe.core.model.IgnitionParameter;
 import com.nwpu.bishe.core.model.MaterialParameter;
@@ -9,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by chunk on 2017/10/16.
@@ -21,13 +25,26 @@ public class StarCalculateService {
 
     public void generateGeometry(StarGeometricParameter starGeometricParameter){
 
+        String path = PathUtil.getPath();
+
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("/3DStarGrain_Part_Test_1.py"));
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path+"/3DStarGrain_Part_Test_1.py"));
+
             String line = null;
-            BufferedWriter bufw = new BufferedWriter(new FileWriter("/runtime\\hi.py"));
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+            String runtimePath = "runtime_" + dateFormat.format(new Date());
+            File filePath = new File(path + runtimePath);
+            if (!filePath.mkdirs()){
+                throw new IOException("创建运行目录失败");
+            }
+            File file = new File(path + runtimePath ,"hi.py");
+            if (!file.createNewFile()){
+                throw new IOException("创建核心文件失败");
+            }
+            BufferedWriter bufw = new BufferedWriter(new FileWriter(path + runtimePath + "/hi.py"));
             int cont = 0;
             while ((line=bufferedReader.readLine())!=null) {
-                //            System.out.println(line);
                 cont++;
                 switch(cont){
                     case 34:
@@ -75,11 +92,12 @@ public class StarCalculateService {
             bufw.flush();
             bufw.close();
             bufferedReader.close();
-            Runtime.getRuntime().exec("cmd /k start "
-                    + "/run_abaqus_noGUI.bat");
+            String cmd = "cmd /c cd " + path + runtimePath + " && abaqus cae noGUI=hi.py";
+            Runtime.getRuntime().exec(cmd);
 
         } catch (Exception e) {
-
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 

@@ -9,6 +9,9 @@ public class IgnitionParameter {
 
     private double timeSpan;
 
+    public IgnitionParameter() {
+    }
+
     public IgnitionParameter(double maxPressure, double timeSpan) {
         this.maxPressure = maxPressure;
         this.timeSpan = timeSpan;

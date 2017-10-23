@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by chunk on 2017/10/10.
  */
@@ -30,8 +32,9 @@ public class HelloPage {
 
     @RequestMapping(value = "/generateTest")
     @ResponseBody
-    public void generateTest(){
-        int a = 1;
-        starCalculateService.generateGeometry(new StarGeometricParameter(6,0.8,500,200,5,80,15,200,1500));
+    public List<String> generateTest(){
+
+        List<String> picPathList = starCalculateService.generateGeometry(new StarGeometricParameter(6,0.8,500,200,5,80,15,200,1500));
+        return picPathList;
     }
 }

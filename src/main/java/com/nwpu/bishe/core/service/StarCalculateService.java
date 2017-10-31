@@ -123,4 +123,6 @@ public class StarCalculateService {
     public void calculate(StarGeometricParameter starGeometricParameter, MaterialParameter materialParameter, CoolingParameter coolingParameter, IgnitionParameter ignitionParameter){
 
     }
+
+
 }

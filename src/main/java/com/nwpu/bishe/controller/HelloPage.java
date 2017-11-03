@@ -3,7 +3,7 @@ package com.nwpu.bishe.controller;
 import com.nwpu.bishe.core.jpa.entity.User;
 import com.nwpu.bishe.core.jpa.repository.UserRepository;
 import com.nwpu.bishe.core.model.StarGeometricParameter;
-import com.nwpu.bishe.core.service.StarCalculateService;
+import com.nwpu.bishe.core.service.calculate.StarCalculateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

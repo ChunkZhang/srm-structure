@@ -1,4 +1,4 @@
-package com.nwpu.bishe.core.service;
+package com.nwpu.bishe.core.service.calculate;
 
 import com.google.common.collect.Lists;
 import com.nwpu.bishe.common.constant.SRMConstant;

@@ -8,4 +8,7 @@ import com.nwpu.bishe.core.jpa.entity.User;
  */
 public interface UserRepository extends BaseRepository<User> {
     User findById(Long id);
+
+    User findByUserName(String userName);
+
 }

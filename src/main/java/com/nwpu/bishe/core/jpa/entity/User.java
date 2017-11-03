@@ -12,12 +12,20 @@ import java.util.Date;
  */
 @Entity
 @DynamicUpdate
-@Table(name = "user")
+@Table(name = "srm_structure_user")
 public class User extends BaseEntity{
+
     private String userName;
-    private Date birthday;
-    private char sex;
-    private String address;
+
+    private String password;
+
+    private char phone;
+
+    private String email;
+
+    private Date  created;
+
+    private Date updated;
 
     public String getUserName() {
         return userName;
@@ -27,27 +35,43 @@ public class User extends BaseEntity{
         this.userName = userName;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getPassword() {
+        return password;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public char getSex() {
-        return sex;
+    public char getPhone() {
+        return phone;
     }
 
-    public void setSex(char sex) {
-        this.sex = sex;
+    public void setPhone(char phone) {
+        this.phone = phone;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }

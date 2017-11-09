@@ -337,6 +337,7 @@ public class StarCalculateService {
             bufferedReader.close();
             String cmd = "cmd /c cd " + path + " && abaqus viewer noGUI=post.py";
             Process process = Runtime.getRuntime().exec(cmd);
+            process.waitFor();
         }catch (Exception e){
             e.printStackTrace();
             LOGGER.error(e.getMessage());

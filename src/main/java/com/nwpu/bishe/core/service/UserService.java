@@ -1,11 +1,13 @@
 package com.nwpu.bishe.core.service;
 
+import com.nwpu.bishe.common.cookie.CookieUserContext;
 import com.nwpu.bishe.common.enumeration.LoginStatus;
 import com.nwpu.bishe.common.utils.MD5Utils;
 import com.nwpu.bishe.core.jpa.entity.User;
 import com.nwpu.bishe.core.jpa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
@@ -15,6 +17,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CookieUserContext cookieUserContext;
 
     public void creatUser(User user){
         userRepository.save(user);
@@ -34,7 +39,7 @@ public class UserService {
         }
     }
 
-    public LoginStatus login(String userName, String password){
+    public LoginStatus login(HttpServletResponse response,String userName, String password){
         User user = userRepository.findByUserName(userName);
         if (user == null){
             return LoginStatus.NO_USER;
@@ -42,10 +47,12 @@ public class UserService {
         if (!user.getPassword().equals(MD5Utils.MD5Encode(password))){
             return LoginStatus.PASSWORD_WRONG;
         }
+        cookieUserContext.addLoginCookie(response,userName);
         return LoginStatus.SUCCESSED;
     }
 
-    public LoginStatus exit(String userName){
+    public LoginStatus exit(HttpServletResponse response, String userName){
+        cookieUserContext.deleteLoginCookie(response);
         return LoginStatus.EXIT;
     }
 

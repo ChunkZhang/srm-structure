@@ -22,6 +22,7 @@ public class PostgreSQL9Dialect extends org.hibernate.dialect.PostgreSQL9Dialect
     public PostgreSQL9Dialect() {
         super();
         this.registerColumnType(Types.JAVA_OBJECT, "json");
+
     }
 
 }

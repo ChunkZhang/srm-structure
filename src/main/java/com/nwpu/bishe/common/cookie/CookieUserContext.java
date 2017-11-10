@@ -1,12 +1,15 @@
 package com.nwpu.bishe.common.cookie;
 
 
+import org.springframework.stereotype.Service;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by chunk on 2017/11/9.
  */
+@Service
 public class CookieUserContext {
 
     public void addLoginCookie(HttpServletResponse response, String userName){

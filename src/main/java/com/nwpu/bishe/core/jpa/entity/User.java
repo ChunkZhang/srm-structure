@@ -19,7 +19,7 @@ public class User extends BaseEntity{
 
     private String password;
 
-    private char phone;
+    private String phone;
 
     private String email;
 
@@ -43,11 +43,11 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public char getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(char phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

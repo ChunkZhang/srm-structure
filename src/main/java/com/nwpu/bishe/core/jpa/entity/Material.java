@@ -1,10 +1,17 @@
 package com.nwpu.bishe.core.jpa.entity;
 
 import com.nwpu.bishe.common.database.jpa.BaseEntity;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by chunk on 2017/11/9.
  */
+@Entity
+@DynamicUpdate
+@Table(name = "srm_structure_material")
 public class Material extends BaseEntity {
 
     private String userName;

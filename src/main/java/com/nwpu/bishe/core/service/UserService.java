@@ -6,6 +6,7 @@ import com.nwpu.bishe.common.utils.MD5Utils;
 import com.nwpu.bishe.core.jpa.entity.User;
 import com.nwpu.bishe.core.jpa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
 /**
  * Created by chunk on 2017/10/31.
  */
+@Service
 public class UserService {
 
     @Autowired

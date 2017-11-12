@@ -32,6 +32,7 @@ public class SignUpController {
         user.setCreated(new Date());
         user.setUpdated(new Date());
         userService.creatUser(user);
-        return StandardJsonObject.newErrorJsonObject("");
+
+        return StandardJsonObject.newCorrectJsonObject();
     }
 }

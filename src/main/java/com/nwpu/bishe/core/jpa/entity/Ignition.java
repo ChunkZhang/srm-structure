@@ -16,8 +16,6 @@ public class Ignition extends BaseEntity{
 
     private String userName;
 
-    private  int ingitionId;
-
     private double maxPressure;
 
     private double timeSpan;
@@ -28,14 +26,6 @@ public class Ignition extends BaseEntity{
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public int getIngitionId() {
-        return ingitionId;
-    }
-
-    public void setIngitionId(int ingitionId) {
-        this.ingitionId = ingitionId;
     }
 
     public double getMaxPressure() {

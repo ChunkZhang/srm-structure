@@ -16,8 +16,6 @@ public class StarGeometry extends BaseEntity {
 
     private String userName;
 
-    private int geometricId;
-
     private int starNum;
 
     private double starCoefficient;
@@ -44,14 +42,6 @@ public class StarGeometry extends BaseEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public int getGeometricId() {
-        return geometricId;
-    }
-
-    public void setGeometricId(int geometricId) {
-        this.geometricId = geometricId;
     }
 
     public int getStarNum() {

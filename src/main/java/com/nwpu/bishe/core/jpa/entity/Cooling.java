@@ -16,8 +16,6 @@ public class Cooling extends BaseEntity {
 
     private String userName;
 
-    private int coolingId;
-
     private double originTemperature;
 
     private double finalTemperature;
@@ -30,14 +28,6 @@ public class Cooling extends BaseEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public int getCoolingId() {
-        return coolingId;
-    }
-
-    public void setCoolingId(int coolingId) {
-        this.coolingId = coolingId;
     }
 
     public double getOriginTemperature() {

@@ -2,18 +2,25 @@ package com.nwpu.bishe.core.service.calculate;
 
 import com.google.common.collect.Lists;
 import com.nwpu.bishe.common.constant.SRMConstant;
+import com.nwpu.bishe.common.utils.GlobalUtil;
 import com.nwpu.bishe.common.utils.PathUtil;
+import com.nwpu.bishe.core.jpa.entity.CalculateResult;
+import com.nwpu.bishe.core.jpa.repository.*;
 import com.nwpu.bishe.core.model.CoolingParameter;
 import com.nwpu.bishe.core.model.IgnitionParameter;
 import com.nwpu.bishe.core.model.MaterialParameter;
 import com.nwpu.bishe.core.model.StarGeometricParameter;
+import com.nwpu.bishe.core.service.CalculateResultService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +32,12 @@ import java.util.List;
 public class StarCalculateService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StarCalculateService.class);
+
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private CalculateResultService calculateResultService;
 
     public List<String> generateGeometry(StarGeometricParameter starGeometricParameter){
 
@@ -270,7 +283,9 @@ public class StarCalculateService {
                     try {
                         Process process = Runtime.getRuntime().exec(cmd);
                         process.waitFor();
-                        postProcessing(SRMConstant.CALCULTE_Path + runtimePath);
+                        List<Double> stresss = postService.postProcessing(SRMConstant.CALCULTE_Path + runtimePath);
+                        calculateResultService.saveStarCalculateResult(SRMConstant.CALCULTE_Path + runtimePath,stresss,starGeometricParameter,materialParameter,ignitionParameter,coolingParameter);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -285,65 +300,6 @@ public class StarCalculateService {
         }finally {
             return result;
         }
-    }
-
-    public List<String> postProcessing(String path){
-        List<String> result = Lists.newArrayList();
-        try {
-
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(PathUtil.getPath() + "/post_test1.py"));
-
-            String line = null;
-            File file = new File(path, "post.py");
-            if (!file.createNewFile()) {
-                throw new IOException("创建核心文件失败");
-            }
-            BufferedWriter bufw = new BufferedWriter(new FileWriter(path + "/post.py"));
-            int cont = 0;
-            while ( (line = bufferedReader.readLine())!=null){
-                cont++;
-                switch (cont) {
-                    case 32:
-                        bufw.write("    fileName='"+path.replace("\\","/")+"/smises2', ");
-                        bufw.write("\n");
-                        break;
-                    case 42:
-                        bufw.write("    fileName='"+path.replace("\\","/")+"/uall2', ");
-                        bufw.write("\n");
-                        break;
-                    case 51:
-                        bufw.write("    fileName='"+path.replace("\\","/")+"/eprincipal2', ");
-                        bufw.write("\n");
-                        break;
-                    case 59:
-                        bufw.write("    fileName='"+path.replace("\\","/")+"/eprincipal1', ");
-                        bufw.write("\n");
-                        break;
-                    case 68:
-                        bufw.write("    fileName='"+path.replace("\\","/")+"/smises1', ");
-                        bufw.write("\n");
-                        break;
-                    case 77:
-                        bufw.write("    fileName='"+path.replace("\\","/")+"/uall1', ");
-                        bufw.write("\n");
-                        break;
-                    default:
-                        bufw.write(line);
-                        bufw.write("\n");
-                }
-            }
-            bufw.flush();
-            bufw.close();
-            bufferedReader.close();
-            String cmd = "cmd /c cd " + path + " && abaqus viewer noGUI=post.py";
-            Process process = Runtime.getRuntime().exec(cmd);
-            process.waitFor();
-        }catch (Exception e){
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
-        }
-
-        return result;
     }
 
 }

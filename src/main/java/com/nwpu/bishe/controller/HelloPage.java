@@ -7,6 +7,7 @@ import com.nwpu.bishe.core.model.CoolingParameter;
 import com.nwpu.bishe.core.model.IgnitionParameter;
 import com.nwpu.bishe.core.model.MaterialParameter;
 import com.nwpu.bishe.core.model.StarGeometricParameter;
+import com.nwpu.bishe.core.service.calculate.PostService;
 import com.nwpu.bishe.core.service.calculate.StarCalculateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,10 @@ public class HelloPage {
     private UserRepository userRepository;
 
     @Autowired
-    StarCalculateService starCalculateService;
+    private StarCalculateService starCalculateService;
+
+    @Autowired
+    private PostService postService;
 
     @RequestMapping(value = "/helloPage")
     @ResponseBody
@@ -62,6 +66,6 @@ public class HelloPage {
     @RequestMapping(value = "/postTest")
     @ResponseBody
     public void postTest(){
-        starCalculateService.postProcessing("C:\\Users\\chunk\\Desktop\\abaqus\\srm-structure\\runtime_2017-11-04_16-42-02");
+        postService.postProcessing("C:\\Users\\chunk\\Desktop\\abaqus\\srm-structure\\runtime_2017-11-04_16-42-02");
     }
 }

@@ -16,8 +16,6 @@ public class Material extends BaseEntity {
 
     private String userName;
 
-    private int materialId;
-
     private double poissonRatio;
 
     private double expansion;
@@ -36,14 +34,6 @@ public class Material extends BaseEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public int getMaterialId() {
-        return materialId;
-    }
-
-    public void setMaterialId(int materialId) {
-        this.materialId = materialId;
     }
 
     public double getPoissonRatio() {

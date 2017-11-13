@@ -32,7 +32,7 @@ public class StarGeometry extends BaseEntity {
     //星角圆弧半径
     private double starArcRadius;
 
-    private double ellipseYAxis;
+    private double ellipseyaxis;
 
     private double grainLength;
 
@@ -100,12 +100,12 @@ public class StarGeometry extends BaseEntity {
         this.starArcRadius = starArcRadius;
     }
 
-    public double getEllipseYAxis() {
-        return ellipseYAxis;
+    public double getEllipseyaxis() {
+        return ellipseyaxis;
     }
 
-    public void setEllipseYAxis(double ellipseYAxis) {
-        this.ellipseYAxis = ellipseYAxis;
+    public void setEllipseyaxis(double ellipseyaxis) {
+        this.ellipseyaxis = ellipseyaxis;
     }
 
     public double getGrainLength() {

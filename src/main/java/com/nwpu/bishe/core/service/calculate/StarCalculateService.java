@@ -135,6 +135,7 @@ public class StarCalculateService {
 
     public List calculate(StarGeometricParameter starGeometricParameter, MaterialParameter materialParameter, CoolingParameter coolingParameter, IgnitionParameter ignitionParameter){
 
+        String userName = GlobalUtil.getUserName();
         List result = Lists.newArrayList();
         try {
 
@@ -284,7 +285,7 @@ public class StarCalculateService {
                         Process process = Runtime.getRuntime().exec(cmd);
                         process.waitFor();
                         List<Double> stresss = postService.postProcessing(SRMConstant.CALCULTE_Path + runtimePath);
-                        calculateResultService.saveStarCalculateResult(SRMConstant.CALCULTE_Path + runtimePath,stresss,starGeometricParameter,materialParameter,ignitionParameter,coolingParameter);
+                        calculateResultService.saveStarCalculateResult(userName,SRMConstant.CALCULTE_Path + runtimePath,stresss,starGeometricParameter,materialParameter,ignitionParameter,coolingParameter);
 
                     } catch (IOException e) {
                         e.printStackTrace();

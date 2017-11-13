@@ -80,13 +80,13 @@ public class PostService {
     public List<Double> getMaxMisesStress(String path){
         List<Double> result = Lists.newArrayList();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(PathUtil.getPath() + "/odbMaxMises.py"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(PathUtil.getPath() + "/getOdbMises.py"));
             String line = null;
-            File file = new File(path, "odbMaxMises.py");
+            File file = new File(path, "getOdbMises.py");
             if (!file.createNewFile()) {
                 throw new IOException("创建核心文件失败");
             }
-            BufferedWriter bufw = new BufferedWriter(new FileWriter(path + "/odbMaxMises.py"));
+            BufferedWriter bufw = new BufferedWriter(new FileWriter(path + "/getOdbMises.py"));
             while ( (line = bufferedReader.readLine())!=null){
                 bufw.write(line);
                 bufw.write("\n");
@@ -94,7 +94,7 @@ public class PostService {
             bufw.flush();
             bufw.close();
             bufferedReader.close();
-            String cmd = "cmd /c cd " + path + " && abaqus python odbMaxMises.py -odb Job-1.odb -elset \" ALL ELEMENTS\"";
+            String cmd = "cmd /c cd " + path + " && abaqus python getOdbMises.py -odb Job-1.odb -elset \" ALL ELEMENTS\"";
             Process process = Runtime.getRuntime().exec(cmd);
             process.waitFor();
             result = getDataFromFile(path);
@@ -109,7 +109,7 @@ public class PostService {
     private List<Double> getDataFromFile(String path){
         List<Double> result = Lists.newArrayList();
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(PathUtil.getPath() + "/data.txt"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path + "/data.txt"));
             double coolingStress = 100*(Double.parseDouble(bufferedReader.readLine()));
             double ignitionStress = 100*Double.parseDouble(bufferedReader.readLine())-coolingStress;
             result.add(coolingStress);

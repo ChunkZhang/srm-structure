@@ -309,6 +309,9 @@
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>src/main/starResources</directory>
+            </resource>
         </resources>
     </build>
 </project>

@@ -53,7 +53,7 @@ CREATE TABLE srm_structure_star(
   arc_radius DOUBLE COMMENT '过渡圆弧半径',
   start_angle DOUBLE COMMENT '星边夹角',
   star_arc_radius DOUBLE COMMENT '星角圆弧半径',
-  ellipse_y_axis DOUBLE COMMENT '封头高度',
+  ellipseyaxis DOUBLE COMMENT '封头高度',
   grain_length DOUBLE COMMENT '药柱长度',
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='星形几何参数表';

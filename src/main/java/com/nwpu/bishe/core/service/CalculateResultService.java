@@ -35,9 +35,9 @@ public class CalculateResultService {
     @Autowired
     private StarGeometryRepository starGeometryRepository;
 
-    public void saveStarCalculateResult(String path, List<Double> stresss, StarGeometricParameter starGeometricParameter, MaterialParameter materialParameter, IgnitionParameter ignitionParameter, CoolingParameter coolingParameter){
+    public void saveStarCalculateResult(String userName,String path, List<Double> stresss, StarGeometricParameter starGeometricParameter, MaterialParameter materialParameter, IgnitionParameter ignitionParameter, CoolingParameter coolingParameter){
         CalculateResult calculateResult = new CalculateResult();
-        String userName = GlobalUtil.getUserName();
+
         calculateResult.setCalculatePath(path);
         calculateResult.setUserName(userName);
         calculateResult.setGeometric("star");
@@ -56,7 +56,7 @@ public class CalculateResultService {
         StarGeometry starGeometry = new StarGeometry();
         starGeometry.setUserName(userName);
         starGeometry.setArcRadius(starGeometricParameter.getArcRadius());
-        starGeometry.setEllipseYAxis(starGeometricParameter.getEllipseYAxis());
+        starGeometry.setEllipseyaxis(starGeometricParameter.getEllipseYAxis());
         starGeometry.setFeatureLength(starGeometricParameter.getFeatureLength());
         starGeometry.setGrainLength(starGeometricParameter.getGrainLength());
         starGeometry.setOuterRadius(starGeometricParameter.getOuterRadius());
@@ -87,7 +87,7 @@ public class CalculateResultService {
         Ignition ignition = new Ignition();
         ignition.setUserName(userName);
         ignition.setMaxPressure(ignitionParameter.getMaxPressure());
-        ignition.setTimeSpan(ignition.getTimeSpan());
+        ignition.setTimeSpan(ignitionParameter.getTimeSpan());
         ignitionRepository.save(ignition);
         return ignition.getId();
     }

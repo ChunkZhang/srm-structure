@@ -3,6 +3,7 @@ package com.nwpu.bishe.core.jpa.entity;
 import com.nwpu.bishe.common.database.jpa.BaseEntity;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,6 +19,7 @@ public class Ignition extends BaseEntity{
 
     private double maxPressure;
 
+    @Column(name = "time_span")
     private double timeSpan;
 
     public String getUserName() {

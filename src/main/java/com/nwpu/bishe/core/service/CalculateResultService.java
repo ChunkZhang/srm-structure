@@ -87,7 +87,7 @@ public class CalculateResultService {
         Ignition ignition = new Ignition();
         ignition.setUserName(userName);
         ignition.setMaxPressure(ignitionParameter.getMaxPressure());
-        ignition.setTimeSpan(ignitionParameter.getTimeSpan());
+        ignition.setTimeSpan(ignitionParameter.getignitionTimeSpan());
         ignitionRepository.save(ignition);
         return ignition.getId();
     }

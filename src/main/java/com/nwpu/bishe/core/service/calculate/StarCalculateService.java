@@ -4,8 +4,6 @@ import com.google.common.collect.Lists;
 import com.nwpu.bishe.common.constant.SRMConstant;
 import com.nwpu.bishe.common.utils.GlobalUtil;
 import com.nwpu.bishe.common.utils.PathUtil;
-import com.nwpu.bishe.core.jpa.entity.CalculateResult;
-import com.nwpu.bishe.core.jpa.repository.*;
 import com.nwpu.bishe.core.model.CoolingParameter;
 import com.nwpu.bishe.core.model.IgnitionParameter;
 import com.nwpu.bishe.core.model.MaterialParameter;
@@ -16,11 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -124,7 +120,7 @@ public class StarCalculateService {
             bufferedReader.close();
             String cmd = "cmd /c cd " + SRMConstant.CALCULTE_Path + runtimePath + " && abaqus cae noGUI=hi.py";
             Process process = Runtime.getRuntime().exec(cmd);
-
+            process.waitFor();
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
@@ -246,7 +242,7 @@ public class StarCalculateService {
                         bufw.write("\n");
                         break;
                     case 59:
-                        bufw.write("PressureTime = "+ignitionParameter.getTimeSpan());
+                        bufw.write("PressureTime = "+ignitionParameter.getignitionTimeSpan());
                         bufw.write("\n");
                         break;
                     case 60:

@@ -7,14 +7,14 @@ public class IgnitionParameter {
 
     private double maxPressure;
 
-    private double timeSpan;
+    private double ignitionTimeSpan;
 
     public IgnitionParameter() {
     }
 
-    public IgnitionParameter(double maxPressure, double timeSpan) {
+    public IgnitionParameter(double maxPressure, double ignitionTimeSpan) {
         this.maxPressure = maxPressure;
-        this.timeSpan = timeSpan;
+        this.ignitionTimeSpan = ignitionTimeSpan;
     }
 
     public double getMaxPressure() {
@@ -25,11 +25,11 @@ public class IgnitionParameter {
         this.maxPressure = maxPressure;
     }
 
-    public double getTimeSpan() {
-        return timeSpan;
+    public double getignitionTimeSpan() {
+        return ignitionTimeSpan;
     }
 
-    public void setTimeSpan(double timeSpan) {
-        this.timeSpan = timeSpan;
+    public void setignitionTimeSpan(double ignitionTimeSpan) {
+        this.ignitionTimeSpan = ignitionTimeSpan;
     }
 }

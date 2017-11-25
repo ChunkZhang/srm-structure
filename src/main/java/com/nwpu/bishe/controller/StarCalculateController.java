@@ -51,14 +51,14 @@ public class StarCalculateController {
     @RequestMapping(value = "/calculateTest")
     @ResponseBody
     public StandardJsonObject calculateTest(StarGeometricParameter starGeometricParameter,MaterialParameter materialParameter,CoolingParameter coolingParameter, IgnitionParameter ignitionParameter){
-//        StarGeometricParameter starGeometricParameter = new StarGeometricParameter(6, 0.8, 500, 200, 5, 80, 15, 200, 1500);
-//        HashMap<String, List<Double>> pronyTable = new HashMap<>();
-//        pronyTable.put("PronyTable1", Lists.newArrayList(0.408,0.408,5.54));
-//        pronyTable.put("PronyTable2", Lists.newArrayList(0.286,0.286,55.42));
-//        pronyTable.put("PronyTable3", Lists.newArrayList(0.13,0.13,554.17));
-//        MaterialParameter materialParameter = new MaterialParameter(0.48, 9.5E-05, 1.77E-09, 5.25, pronyTable, Lists.newArrayList(20.0, 20.0, 573.0));
-//        CoolingParameter coolingParameter = new CoolingParameter(73.0,20.0,190800);
-//        IgnitionParameter ignitionParameter = new IgnitionParameter(10.0, 0.1);
+       /* StarGeometricParameter starGeometricParameter = new StarGeometricParameter(6, 0.8, 500, 200, 5, 80, 15, 200, 1500);
+        HashMap<String, List<Double>> pronyTable = new HashMap<>();
+        pronyTable.put("PronyTable1", Lists.newArrayList(0.408,0.408,5.54));
+        pronyTable.put("PronyTable2", Lists.newArrayList(0.286,0.286,55.42));
+        pronyTable.put("PronyTable3", Lists.newArrayList(0.13,0.13,554.17));
+        MaterialParameter materialParameter = new MaterialParameter(0.48, 9.5E-05, 1.77E-09, 5.25, pronyTable, Lists.newArrayList(20.0, 20.0, 573.0));
+        CoolingParameter coolingParameter = new CoolingParameter(73.0,20.0,190800);
+        IgnitionParameter ignitionParameter = new IgnitionParameter(10.0, 0.1);*/
         starCalculateService.calculate(starGeometricParameter,materialParameter,coolingParameter,ignitionParameter);
         return StandardJsonObject.newErrorJsonObject("计算中，请稍后");
     }

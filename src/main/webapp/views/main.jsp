@@ -17,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="/jquery/demo/demo.css">
     <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
     <script type="text/javascript" src="/resources/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/resources/js/main.js"></script>
+
 
 
 </head>
@@ -27,11 +29,11 @@
 </div>
 <div class="easyui-tabs" style="width:100%;height:100%;">
     <div title="输入计算参数" style="padding:10px;">
-        <form>
+        <form id="form" action="/srm/generateGeometry">
             <div class="easyui-accordion" style="width:100%;height:700px;">
                 <div title="几何参数"   iconCls="icon-ok" style="padding:10px;">
                     <div align="center" class="easyui-layout" style="width:95%;height:600px;">
-                        <div id="p" data-options="region:'west'" title="West" style="width:40%;padding:10px">
+                        <div id="pp" data-options="region:'west'" title="" style="width:40%;padding:10px">
                             <div  style="width:100%;max-width:400px;padding:30px 60px;" align="center">
 
                                 <div style="margin-bottom:20px">
@@ -63,17 +65,43 @@
                                 </div>
 
                                 <div style="text-align:center;padding:5px 0">
-                                    <input type="submit" formaction="/srm/generateGeometry"  style="width:80px"></input>
-                                    <input type="reset"  style="width:80px"></input>
+                                    <%--<input type="submit" formaction="/srm/generateGeometry"  style="width:80px"></input>--%>
+                                        <input id="generateGeometryInput" formaction="/srm/generateGeometry" type="submit"  style="width:80px"></input>
+                                        <input type="reset"  style="width:80px"></input>
                                 </div>
                             </div>
                         </div>
-                        <div data-options="region:'center'" title="Center">
+                        <div id="divshow" data-options="region:'center'" title="" style="background-image: url('../images/banner2.jpg');background-repeat: no-repeat;background-size: cover;">
+                            <a onclick="a()" class="easyui-linkbutton" plain="true">1</a>
+                            <a onclick="b()" class="easyui-linkbutton" plain="true">2</a>
+                            <a onclick="c()" class="easyui-linkbutton" plain="true">3</a><br>
                         </div>
                     </div>
                 </div>
                 <div title="材料参数" iconCls="icon-reload" style="padding:10px;">
-                    easyui help you build your web page easily
+                    <div align="center" class="easyui-layout" style="width:95%;height:600px;">
+                        <div id="p" data-options="region:'west'" title="" style="width:50%;padding:10px">
+                            <div  style="width:100%;max-width:400px;padding:30px 60px;" align="center">
+
+                                <div style="margin-bottom:20px">
+                                    <input class="easyui-textbox" name="poissonRatio" style="width:100%" data-options="label:'泊松比:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                    <input class="easyui-textbox" name="expansion" style="width:100%" data-options="label:'热膨胀系数:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                    <input class="easyui-textbox" name="density" style="width:100%" data-options="label:'密度:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                    <input class="easyui-textbox" name="modulus" style="width:100%" data-options="label:'模量:',required:true">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div data-options="region:'center'" title="">
+                            <%-- prony--%>
+                        </div>
+                    </div>
                 </div>
                 <div title="载荷参数" iconCls="icon-print">
 
@@ -88,5 +116,32 @@
         Third Tab
     </div>
 </div>
+<script>
+    function a() {
+        document.getElementById("divshow").style.backgroundImage="url('/srm/result/"+getPath(0)+".png')";
+    }
+    function b() {
+        document.getElementById("divshow").style.backgroundImage="url('/srm/result/"+getPath(1)+".png')";
+    }
+    function c() {
+        document.getElementById("divshow").style.backgroundImage="url('/srm/result/"+getPath(2)+".png')";
 
+    }
+    function getcookie(objname){
+        var arrstr = document.cookie.split("; ");
+        for(var i = 0;i < arrstr.length;i ++){
+            var temp = arrstr[i].split("=");
+            if(temp[0] == objname)
+                return temp[1];
+        }
+    }
+    function getPath(num) {
+        var pathList = getcookie("picPathList");
+        var temp = pathList.split(",");
+        temp[0] = temp[0].substr(2,temp[0].length);
+        temp[1] = temp[1].substr(1,temp[1].length);
+        temp[2] = temp[2].substr(1,temp[2].length-3);
+        return temp[num];
+    }
+</script>
 </body>

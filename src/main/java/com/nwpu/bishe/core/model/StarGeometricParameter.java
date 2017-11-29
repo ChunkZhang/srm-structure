@@ -19,7 +19,7 @@ public class StarGeometricParameter {
 
     private double startAngle;
 
-    //星角圆弧半径
+    //星角  圆弧半径
     private double starArcRadius;
 
     private double ellipseYAxis;

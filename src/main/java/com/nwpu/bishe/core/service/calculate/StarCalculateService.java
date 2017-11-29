@@ -112,9 +112,9 @@ public class StarCalculateService {
                 }
 
             }
-            picPathList.add(SRMConstant.CALCULTE_Path  + runtimePath + "\\geometry1");
-            picPathList.add(SRMConstant.CALCULTE_Path  + runtimePath + "\\geometry2");
-            picPathList.add(SRMConstant.CALCULTE_Path  + runtimePath + "\\geometry3");
+            picPathList.add(runtimePath + "/geometry1");
+            picPathList.add(runtimePath + "/geometry2");
+            picPathList.add(runtimePath + "/geometry3");
             bufw.flush();
             bufw.close();
             bufferedReader.close();

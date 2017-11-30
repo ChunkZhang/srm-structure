@@ -29,7 +29,7 @@
 </div>
 <div class="easyui-tabs" style="width:100%;height:100%;">
     <div title="输入计算参数" style="padding:10px;">
-        <form id="form" action="/srm/generateGeometry">
+        <form id="form" >
             <div class="easyui-accordion" style="width:100%;height:700px;">
                 <div title="几何参数"   iconCls="icon-ok" style="padding:10px;">
                     <div align="center" class="easyui-layout" style="width:95%;height:600px;">
@@ -66,7 +66,7 @@
 
                                 <div style="text-align:center;padding:5px 0">
                                     <%--<input type="submit" formaction="/srm/generateGeometry"  style="width:80px"></input>--%>
-                                        <input id="generateGeometryInput" formaction="/srm/generateGeometry" type="submit"  style="width:80px"></input>
+                                        <input id="generateGeometryInput" formaction="/srm/generateTest" type="submit"  style="width:80px"></input>
                                         <input type="reset"  style="width:80px"></input>
                                 </div>
                             </div>
@@ -96,10 +96,101 @@
                                     <input class="easyui-textbox" name="modulus" style="width:100%" data-options="label:'模量:',required:true">
                                 </div>
 
+                                <TABLE title="prony级数" style="width: 320px;height:150px">
+                                    <THEAD>
+                                    <tr>
+                                        <th></th>
+                                        <th >g_i Prony</th>
+                                        <th >k_i Prony</th>
+                                        <th>tau_i Prony</th>
+                                    </tr>
+                                    <tr>
+                                        <th >1</th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable1][0]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable1][1]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable1][2]" style="width:60px" data-options="required:true">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th >2</th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable2][0]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable2][1]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable2][2]" style="width:60px" data-options="required:true">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th >3</th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable3][0]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable3][1]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="pronyTable[PronyTable3][2]" style="width:60px" data-options="required:true">
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </TABLE>
+
+                                <table title="室温等效因子" style="width: 320px;height:100px">
+                                    <thead>
+                                    <tr>
+                                        <th ></th>
+                                        <th>Theta 0</th>
+                                        <th >C1</th>
+                                        <th >C2</th>
+                                    </tr>
+                                    <tr>
+                                        <th >1</th>
+                                        <th >
+                                            <input class="easyui-textbox" name="trsTable[0]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="trsTable[1]" style="width:60px" data-options="required:true">
+                                        </th>
+                                        <th >
+                                            <input class="easyui-textbox" name="trsTable[2]" style="width:60px" data-options="required:true">
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                         <div data-options="region:'center'" title="">
-                            <%-- prony--%>
+                            <div  style="width:100%;max-width:400px;padding:30px 60px;" align="center">
+
+                                <div style="margin-bottom:20px">
+                                <input class="easyui-textbox" name="originTemperature" style="width:100%" data-options="label:'初始温度:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                <input class="easyui-textbox" name="finalTemperature" style="width:100%" data-options="label:'最终温度:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                <input class="easyui-textbox" name="timeSpan" style="width:100%" data-options="label:'降温时间:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                <input class="easyui-textbox" name="maxPressure" style="width:100%" data-options="label:'最大压力:',required:true">
+                                </div>
+                                <div style="margin-bottom:20px">
+                                <input class="easyui-textbox" name="ignitionTimeSpan" style="width:100%" data-options="label:'点火时间:',required:true">
+                                </div>
+                                <div style="text-align:center;padding:5px 0">
+                                    <%--<input type="submit" formaction="/srm/generateGeometry"  style="width:80px"></input>--%>
+                                    <input id="calculateTestInput" onclick="changeAction()" type="submit"  style="width:80px"></input>
+                                    <input type="reset"  style="width:80px"></input>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,5 +234,11 @@
         temp[2] = temp[2].substr(1,temp[2].length-3);
         return temp[num];
     }
+
+    function changeAction() {
+        var form = document.getElementById("generateGeometryInput");
+        form.setAttribute("formaction","/srm/inputTest");
+    }
+
 </script>
 </body>

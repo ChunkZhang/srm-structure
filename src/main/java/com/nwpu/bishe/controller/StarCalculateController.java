@@ -54,6 +54,14 @@ public class StarCalculateController {
         return result;
     }
 
+    @RequestMapping(value = "/generateTest")
+    @ResponseBody
+    public StandardJsonObject generate(HttpServletResponse response,StarGeometricParameter starGeometricParameter){
+//        starGeometricParameter = new StarGeometricParameter(6,0.8,500,200,5,80,15,200,1500);
+        int a= 1;
+        return StandardJsonObject.newCorrectJsonObject();
+    }
+
     @RequestMapping(value = "/calculateTest")
     @ResponseBody
     public StandardJsonObject calculateTest(StarGeometricParameter starGeometricParameter,MaterialParameter materialParameter,CoolingParameter coolingParameter, IgnitionParameter ignitionParameter){
@@ -84,6 +92,7 @@ public class StarCalculateController {
         int a = 0;
         return StandardJsonObject.newErrorJsonObject("计算中，请稍后");
     }
+
     @RequestMapping(value = "/dababaseTest")
     @ResponseBody
     public void dababaseTest(){

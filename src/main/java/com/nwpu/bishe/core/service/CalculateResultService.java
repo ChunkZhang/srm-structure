@@ -102,6 +102,11 @@ public class CalculateResultService {
         coolingRepository.save(cooling);
         return cooling.getId();
     }
-    
+
+    public List<CalculateResult> getCalculateResultByUserName(String userName){
+        List<CalculateResult> calculateResults = calculateResultRepository.findByUserName(userName);
+        return calculateResults;
+    }
+
     
 }

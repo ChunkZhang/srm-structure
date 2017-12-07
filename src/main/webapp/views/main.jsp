@@ -66,7 +66,7 @@
 
                                 <div style="text-align:center;padding:5px 0">
                                     <%--<input type="submit" formaction="/srm/generateGeometry"  style="width:80px"></input>--%>
-                                        <input id="generateGeometryInput" formaction="/srm/generateTest" type="submit"  style="width:80px"></input>
+                                        <input id="generateGeometryInput" formaction="/srm/generateGeometry" type="submit"  style="width:80px"></input>
                                         <input type="reset"  style="width:80px"></input>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
 
     function changeAction() {
         var form = document.getElementById("generateGeometryInput");
-        form.setAttribute("formaction","/srm/inputTest");
+        form.setAttribute("formaction","/srm/calculateTest");
     }
 
 </script>

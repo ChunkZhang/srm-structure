@@ -108,5 +108,9 @@ public class CalculateResultService {
         return calculateResults;
     }
 
+    public CalculateResult getCalculateResultById(Long id){
+        CalculateResult result = calculateResultRepository.findOne(id);
+        return result;
+    }
     
 }

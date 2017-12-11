@@ -281,7 +281,7 @@ public class StarCalculateService {
                         Process process = Runtime.getRuntime().exec(cmd);
                         process.waitFor();
                         List<Double> stresss = postService.postProcessing(SRMConstant.CALCULTE_Path + runtimePath);
-                        calculateResultService.saveStarCalculateResult(userName,SRMConstant.CALCULTE_Path + runtimePath,stresss,starGeometricParameter,materialParameter,ignitionParameter,coolingParameter);
+                        calculateResultService.saveStarCalculateResult(userName,runtimePath,stresss,starGeometricParameter,materialParameter,ignitionParameter,coolingParameter);
 
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -21,20 +21,40 @@
     <script type="text/javascript" src="/resources/js/history.js"></script>
 </head>
 <body>
-<table id="tt" class="easyui-datagrid" style="width:600px;height:250px"
-       url="/srm/history"
-       title="Load Data" iconCls="icon-save"
-       rownumbers="true" pagination="true">
+<h2>Basic DataGrid</h2>
+<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+<div style="margin:20px 0;"></div>
+
+<table id="dg" class="easyui-datagrid" title="Basic DataGrid" style="width:850px;height:250px"
+       data-options="singleSelect:true,collapsible:true,url:'/srm/history',method:'get'">
     <thead>
     <tr>
-        <th field="itemid" width="80">Item ID</th>
-        <th field="productid" width="80">Product ID</th>
-        <th field="listprice" width="80" align="right">List Price</th>
-        <th field="unitcost" width="80" align="right">Unit Cost</th>
-        <th field="attr1" width="150">Attribute</th>
-        <th field="status" width="60" align="center">Stauts</th>
+        <th data-options="field:'userName',width:60,align:'center'">用户名</th>
+        <th data-options="field:'geometric',width:80,align:'center'">药型</th>
+        <th data-options="field:'geometricId',width:80,align:'center'">药型ID</th>
+        <th data-options="field:'time',width:200,align:'center',formatter:function(value,row,index){
+                         var unixTimestamp = new Date(value);
+                         return unixTimestamp.toLocaleString();
+                         } ">计算日期</th>
+        <th data-options="field:'eprincipal1',width:150,align:'center'">冷却降温应变</th>
+        <th data-options="field:'eprincipal2',width:150,align:'center'">点火应变</th>
+        <th data-options="field:'id',width:60,align:'center',formatter:input">查看参数</th>
+        <th data-options="field:'calculatePath',width:60,align:'center',formatter:result">查看结果</th>
+
     </tr>
     </thead>
 </table>
+
 </body>
+
+<script>
+    function input(value,row,index){
+        return "<a href='/srm/views/sign.jsp' target='_blank'>查看参数</a>";
+    }
+
+    function result(value,row,index){
+        return "<a href='/srm/resultPic?path="+value+"' target='_blank'>查看结果</a>";
+    }
+</script>
+
 </html>

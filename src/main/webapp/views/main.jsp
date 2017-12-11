@@ -201,7 +201,7 @@
         </form>
     </div>
     <div title="Second Tab" closable="true" style="padding:10px;">
-        <iframe name="content_frame" marginwidth=0 marginheight=0 width=100% height=100% src="sign.jsp" frameborder=0></iframe>
+        <iframe name="content_frame" marginwidth=0 marginheight=0 width=100% height=100% src="history.jsp" frameborder=0></iframe>
     </div>
     <div title="Third Tab" iconCls="icon-reload" closable="true" style="padding:10px;">
         Third Tab

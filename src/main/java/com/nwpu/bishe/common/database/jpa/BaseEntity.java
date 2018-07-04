@@ -1,10 +1,4 @@
-/*
- * Copyright 2016 Qunar.com All right reserved. This software is the
- * confidential and proprietary information of Qunar.com ("Confidential
- * Information"). You shall not disclose such Confidential Information and shall
- * use it only in accordance with the terms of the license agreement you entered
- * into with Qunar.com.
- */
+
 package com.nwpu.bishe.common.database.jpa;
 
 import com.google.common.base.MoreObjects;
